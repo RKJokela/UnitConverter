@@ -123,7 +123,7 @@ public class UnitConverterFragment extends Fragment {
                 break;
             default: break;
         }
-        DecimalFormat df = new DecimalFormat("###.#");
+        DecimalFormat df = new DecimalFormat("####.##");
         textViewValueMetric.setText(df.format(metric));
     }
 
@@ -145,7 +145,7 @@ public class UnitConverterFragment extends Fragment {
                 break;
             default: break;
         }
-        DecimalFormat df = new DecimalFormat("####.#");
+        DecimalFormat df = new DecimalFormat("####.##");
         textViewValueImperial.setText(df.format(imperial));
     }
 
