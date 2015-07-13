@@ -2,6 +2,7 @@ package com.rjokela.unitconverter;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.Spannable;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -86,6 +87,13 @@ public class UnitConverterFragment extends Fragment {
                     selectedIndex = position;
                     updateUnits();
                     clearInputs();
+                    int inputType = InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL;
+                    if (selectedIndex == 2) {
+                        // for temperatures, units can be negative
+                        inputType |= InputType.TYPE_NUMBER_FLAG_SIGNED;
+                    }
+                    textViewValueImperial.setInputType(inputType);
+                    textViewValueMetric.setInputType(inputType);
                 }
             }
 
