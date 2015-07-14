@@ -114,47 +114,63 @@ public class UnitConverterFragment extends Fragment {
     }
 
     private void imperialToMetric() {
-        double imperial = Double.parseDouble(textViewValueImperial.getText().toString());
-        double metric = 0.0;
-        switch (selectedIndex) {
-            case 0:
-                Log.d(TAG, "Converting " + imperial + " pounds to kilograms");
-                metric = Convert.poundsToKilograms(imperial);
-                break;
-            case 1:
-                Log.d(TAG, "Converting " + imperial + " miles to kilometers");
-                metric = Convert.milesToKilometers(imperial);
-                break;
-            case 2:
-                Log.d(TAG, "Converting " + imperial + " degrees F to C");
-                metric = Convert.fahrenheitToCelsius(imperial);
-                break;
-            default: break;
+        String s = textViewValueImperial.getText().toString();
+        if (!s.isEmpty()) {
+            double imperial = Double.parseDouble(s);
+            double metric = 0.0;
+            switch (selectedIndex) {
+                case 0:
+                    Log.d(TAG, "Converting " + imperial + " pounds to kilograms");
+                    metric = Convert.poundsToKilograms(imperial);
+                    break;
+                case 1:
+                    Log.d(TAG, "Converting " + imperial + " miles to kilometers");
+                    metric = Convert.milesToKilometers(imperial);
+                    break;
+                case 2:
+                    Log.d(TAG, "Converting " + imperial + " degrees F to C");
+                    metric = Convert.fahrenheitToCelsius(imperial);
+                    break;
+                default:
+                    break;
+            }
+            DecimalFormat df = new DecimalFormat("####.##");
+            textViewValueMetric.setText(df.format(metric));
         }
-        DecimalFormat df = new DecimalFormat("####.##");
-        textViewValueMetric.setText(df.format(metric));
+        else {
+            // text field is empty
+            textViewValueMetric.setText(null);
+        }
     }
 
     private void metricToImperial() {
-        double metric = Double.parseDouble(textViewValueMetric.getText().toString());
-        double imperial = 0.0;
-        switch (selectedIndex) {
-            case 0:
-                Log.d(TAG, "Converting " + metric + " kilograms to pounds");
-                imperial = Convert.kilogramsToPounds(metric);
-                break;
-            case 1:
-                Log.d(TAG, "Converting " + metric + " kilometers to miles");
-                imperial = Convert.kilometersToMiles(metric);
-                break;
-            case 2:
-                Log.d(TAG, "Converting " + metric + " degrees C to F");
-                imperial = Convert.celsiusToFahrenheit(metric);
-                break;
-            default: break;
+        String s = textViewValueMetric.getText().toString();
+        if (!s.isEmpty()) {
+            double metric = Double.parseDouble(s);
+            double imperial = 0.0;
+            switch (selectedIndex) {
+                case 0:
+                    Log.d(TAG, "Converting " + metric + " kilograms to pounds");
+                    imperial = Convert.kilogramsToPounds(metric);
+                    break;
+                case 1:
+                    Log.d(TAG, "Converting " + metric + " kilometers to miles");
+                    imperial = Convert.kilometersToMiles(metric);
+                    break;
+                case 2:
+                    Log.d(TAG, "Converting " + metric + " degrees C to F");
+                    imperial = Convert.celsiusToFahrenheit(metric);
+                    break;
+                default:
+                    break;
+            }
+            DecimalFormat df = new DecimalFormat("####.##");
+            textViewValueImperial.setText(df.format(imperial));
         }
-        DecimalFormat df = new DecimalFormat("####.##");
-        textViewValueImperial.setText(df.format(imperial));
+        else {
+            // text field is empty
+            textViewValueImperial.setText(null);
+        }
     }
 
     private void clearInputs() {
